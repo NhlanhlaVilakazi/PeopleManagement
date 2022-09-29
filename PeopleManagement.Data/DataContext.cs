@@ -20,7 +20,7 @@ namespace PeopleManagement.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(new SqlConnection(ServiceExtension.dbConnectionString));
+            optionsBuilder.UseSqlServer(new SqlConnection(ServiceExtension.dbConnectionString));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
