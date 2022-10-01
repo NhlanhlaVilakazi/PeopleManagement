@@ -5,11 +5,13 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleManagement", "PeopleManagement\PeopleManagement.csproj", "{1B08F59A-5110-4D87-89ED-98B360D18881}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManagement.Business", "PeopleManagement.Business\PeopleManagement.Business.csproj", "{867F9498-5AF8-4715-9B63-768435CE6F35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleManagement.Business", "PeopleManagement.Business\PeopleManagement.Business.csproj", "{867F9498-5AF8-4715-9B63-768435CE6F35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManagement.Repository", "PeopleManagement.Repository\PeopleManagement.Repository.csproj", "{C8DA9D2F-81EF-418A-A45F-871DC4F63C21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleManagement.Repository", "PeopleManagement.Repository\PeopleManagement.Repository.csproj", "{C8DA9D2F-81EF-418A-A45F-871DC4F63C21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManagement.Data", "PeopleManagement.Data\PeopleManagement.Data.csproj", "{58A3AEE9-AA81-4179-865A-C6D470964479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleManagement.Data", "PeopleManagement.Data\PeopleManagement.Data.csproj", "{58A3AEE9-AA81-4179-865A-C6D470964479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleManagement.ViewModels", "PeopleManagement.ViewModels\PeopleManagement.ViewModels.csproj", "{B59100D2-38B6-4A52-9A8F-2EB033A505EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{58A3AEE9-AA81-4179-865A-C6D470964479}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58A3AEE9-AA81-4179-865A-C6D470964479}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58A3AEE9-AA81-4179-865A-C6D470964479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59100D2-38B6-4A52-9A8F-2EB033A505EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59100D2-38B6-4A52-9A8F-2EB033A505EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59100D2-38B6-4A52-9A8F-2EB033A505EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59100D2-38B6-4A52-9A8F-2EB033A505EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

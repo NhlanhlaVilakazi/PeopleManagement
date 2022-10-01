@@ -1,6 +1,8 @@
-﻿using PeopleManagement.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PeopleManagement.Data;
 using PeopleManagement.Data.Person;
 using PeopleManagement.Repository.Interface;
+using Microsoft.Data.SqlClient;
 
 namespace PeopleManagement.Repository.Implementation
 {
@@ -11,16 +13,18 @@ namespace PeopleManagement.Repository.Implementation
         {
             _dbContext = new DataContext();
         }
-        public List<Person> GetAllPeople()
+        public Task<List<Person>> GetPersons(string searchString)
         {
-            const string query = "EXEC GetHostsRecommendedForSubmission";
-            var results = _dbContext.Set<Person>().FromSqlRaw(query).ToList();
-            return results;
+            object[] parameter = {
+                new SqlParameter("@searchString", string.IsNullOrEmpty(searchString) ? (object) DBNull.Value : (object) searchString)
+            };
+            const string query = "EXEC [GetPersons] @searchString";
+            return _dbContext.Set<Person>().FromSqlRaw(query, parameter).ToListAsync();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _dbContext = null;
         }
     }
 }

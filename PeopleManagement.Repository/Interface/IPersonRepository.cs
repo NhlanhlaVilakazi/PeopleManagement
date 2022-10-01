@@ -9,6 +9,6 @@ namespace PeopleManagement.Repository.Interface
 {
     public interface IPersonRepository : IDisposable
     {
-        List<Person>GetAllPeople();
+        Task<List<Person>> GetPersons(string searchString);
     }
 }

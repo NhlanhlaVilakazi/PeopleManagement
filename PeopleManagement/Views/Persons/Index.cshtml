@@ -1,0 +1,85 @@
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<PeopleManagement.Models.Person.PersonViewModel>
+@{ ViewBag.Title = "Persons List"; Layout = "~/Views/Shared/_Layout.cshtml";}
+
+@section Stylesheets
+{
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+}
+<div class="main">
+        <div class="container-fluid">
+        @if (Model.Any())
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <strong>Persons List</strong>
+                </div>
+                <div class="card-body">
+                    <div class="table table-bordered table-striped table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <strong>@Html.DisplayNameFor(model => model.First().name)</strong>
+                                    </th>
+                                    <th class="d-none d-sm-table-cell">
+                                        <strong> @Html.DisplayNameFor(model => model.First().surname)</strong>
+                                    </th>
+                                    <th class="d-none d-sm-table-cell">
+                                        <strong> @Html.DisplayNameFor(model => model.First().id_number)</strong>
+                                    </th>
+                                    <th>
+                                        <strong>Action</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var person in Model)
+                                {
+                                    <tr>
+                                        <th scope="col">
+                                            <strong>@person.name</strong>
+                                        </th>
+                                        <th class="d-none d-sm-table-cell">
+                                            <strong>@person.surname</strong>
+                                        </th>
+                                        <th class="d-none d-sm-table-cell">
+                                            <strong>@person.id_number</strong>
+                                        </th>
+                                        <th class="d-none d-sm-table-cell">
+                                            <a href="@Url.Action("", new {personId = person.code})" data-toggle="tooltip" title="Edit person"><i class="fa fa-pen"></i></a>
+                                            <a href="@Url.Action("", new {personId = person.code, type=true})" data-toggle="tooltip" title="Delete @person.name @person.surname"><i class="fa fa-trash"></i></a>
+                                        </th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> <strong>Persons List</strong>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <p>No Records Available</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+    // Add something here
+} 

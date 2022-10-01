@@ -20,7 +20,7 @@ namespace PeopleManagement.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(new SqlConnection(ServiceExtension.dbConnectionString));
+            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("PeopleManagementConnection") ?? throw new Exception("Please setup environment variable: PeopleManagementConnection"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
