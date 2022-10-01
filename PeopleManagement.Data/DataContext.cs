@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PeopleManagement.Data.DataModels.Persons;
 using PeopleManagement.Data.RepositotyServive;
 using System.Data.SqlClient;
 
@@ -25,6 +26,8 @@ namespace PeopleManagement.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<PersonAccount>().HasNoKey().ToView(null);
         }
+
     }
 }

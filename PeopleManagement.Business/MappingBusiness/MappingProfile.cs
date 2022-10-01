@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using PeopleManagement.Data.DataModels.Persons;
 using PeopleManagement.Data.Person;
 using PeopleManagement.Models.Person;
+using PeopleManagement.ViewModels.Persons;
 
 namespace PeopleManagement.Business.MappingBusiness
 {
@@ -13,6 +15,7 @@ namespace PeopleManagement.Business.MappingBusiness
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<PersonViewModel, Person>().ReverseMap();
+                cfg.CreateMap<PersonAccountViewModel, PersonAccount>().ReverseMap();
             });
 
             var mapper = config.CreateMapper();

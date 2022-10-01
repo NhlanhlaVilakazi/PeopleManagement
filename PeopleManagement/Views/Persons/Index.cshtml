@@ -1,32 +1,69 @@
 ﻿@using X.PagedList.Mvc.Core
 @model X.PagedList.IPagedList<PeopleManagement.Models.Person.PersonViewModel>
-@{ ViewBag.Title = "Persons List"; Layout = "~/Views/Shared/_Layout.cshtml";}
+@{ 
+    ViewBag.Title = "Persons List"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var searchString = Context.Request.Query["searchString"];
+}
 
 @section Stylesheets
 {
-    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/css/PagedList.css" rel="stylesheet" />
 }
 <div class="main">
         <div class="container-fluid">
+        @using (Html.BeginForm("Index", "Persons", FormMethod.Get))
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fa fa-search"></i>
+                    <strong>Search</strong>
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                @if (searchString != string.Empty)
+                                {
+                                    <input class="form-control" id="searchString" type="text" name="searchString" placeholder="Search by Person Surname, Id Number or Account Number." autocomplete="off" value="@searchString">
+                                }
+                                else
+                                {
+                                    <input class="form-control" id="searchString" type="text" name="searchString" placeholder="Search by Person Surname, Id Number or Account Number." autocomplete="off">
+                                }
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fa fa-search"></i> Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
         @if (Model.Any())
         {
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> <strong>Persons List</strong>
                 </div>
+                
                 <div class="card-body">
+                    <a href="@Url.Action("AddPerson", "Persons")" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new person">
+                      <i class="fa-solid fa-user-plus"></i> Add New 
+                    </a>
                     <div class="table table-bordered table-striped table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">
-                                        <strong>@Html.DisplayNameFor(model => model.First().name)</strong>
+                                        <strong>@Html.DisplayNameFor(model => model.First().Name)</strong>
                                     </th>
                                     <th class="d-none d-sm-table-cell">
-                                        <strong> @Html.DisplayNameFor(model => model.First().surname)</strong>
+                                        <strong> @Html.DisplayNameFor(model => model.First().Surname)</strong>
                                     </th>
                                     <th class="d-none d-sm-table-cell">
-                                        <strong> @Html.DisplayNameFor(model => model.First().id_number)</strong>
+                                        <strong> @Html.DisplayNameFor(model => model.First().IdNumber)</strong>
                                     </th>
                                     <th>
                                         <strong>Action</strong>
@@ -39,17 +76,18 @@
                                 {
                                     <tr>
                                         <th scope="col">
-                                            <strong>@person.name</strong>
+                                            <strong>@person.Name</strong>
                                         </th>
                                         <th class="d-none d-sm-table-cell">
-                                            <strong>@person.surname</strong>
+                                            <strong>@person.Surname</strong>
                                         </th>
                                         <th class="d-none d-sm-table-cell">
-                                            <strong>@person.id_number</strong>
+                                            <strong>@person.IdNumber</strong>
                                         </th>
                                         <th class="d-none d-sm-table-cell">
-                                            <a href="@Url.Action("", new {personId = person.code})" data-toggle="tooltip" title="Edit person"><i class="fa fa-pen"></i></a>
-                                            <a href="@Url.Action("", new {personId = person.code, type=true})" data-toggle="tooltip" title="Delete @person.name @person.surname"><i class="fa fa-trash"></i></a>
+                                            <a href="@Url.Action("PersonDetails", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="More information"><i class="fa-solid fa-circle-info"></i></a> &nbsp; &nbsp;
+                                            <a href="@Url.Action("Edit", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="Edit person"><i class="fa fa-pen"></i></a> &nbsp; &nbsp;
+                                            <a href="@Url.Action("DeletePerson", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="Delete @person.Name @person.Surname"><i class="fa fa-trash"></i></a>
                                         </th>
                                     </tr>
                                 }
@@ -81,5 +119,4 @@
 </div>
 
 @section scripts{
-    // Add something here
 } 

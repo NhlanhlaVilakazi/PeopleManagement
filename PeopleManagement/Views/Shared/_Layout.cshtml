@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PeopleManagement.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/@@coreui/coreui@4.2.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU" crossorigin="anonymous">
+    @await RenderSectionAsync("Stylesheets", required: false)
 </head>
 <body>
     <!--<header>
@@ -36,7 +38,7 @@
             <a href="#default" class="logo"><strong>Logo</strong></a>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Persons</a></li>
+                <li><a href="@Url.Action("Index","Persons")">Persons</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
@@ -55,9 +57,14 @@
             <CENTER><strong> &copy; 2022 - Managing Personnel</strong></CENTER>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="https://kit.fontawesome.com/d887f3087f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js" integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

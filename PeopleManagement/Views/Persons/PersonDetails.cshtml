@@ -1,0 +1,113 @@
+﻿@model List<PeopleManagement.ViewModels.Persons.PersonAccountViewModel>
+@{
+    ViewBag.Title = "View Or Update Person Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Stylesheets{
+
+}
+
+<main class="main">
+    <div class="container-fluid">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa-solid fa-circle-info"></i>
+                <strong>View/Update Person and Account Data</strong>
+            </div>
+            <div class="card-body">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fa-solid fa-user"></i>
+                        <strong>View/Update Person Data</strong>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("Edit", "Persons", FormMethod.Post))
+                        {
+                            @Html.HiddenFor(x => x.First().PersonCode)
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group mb-3">
+                                @Html.LabelFor(model => model.First().Name, htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.TextBoxFor(model => model.First().Name, new { @class = "form-control " , @style = "text-transform:uppercase" })
+                                @Html.ValidationMessageFor(model => model.First().Name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group mb-3">
+                                @Html.LabelFor(model => model.First().Surname, htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.TextBoxFor(model => model.First().Surname, new { @class = "form-control " , @style = "text-transform:uppercase" })
+                                @Html.ValidationMessageFor(model => model.First().Surname, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group mb-3">
+                                @Html.LabelFor(model => model.First().IdNumber, htmlAttributes: new { @class = "font-weight-bold" })
+                                @Html.TextBoxFor(model => model.First().IdNumber, new { @class = "form-control " })
+                                @Html.ValidationMessageFor(model => model.First().IdNumber, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div>
+                                <button id="submitButton" type="submit" class="btn btn-primary">Update <i class="fa-solid fa-pen-to-square"></i></button>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+                <hr />
+
+                <div class="card-body">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <strong>View/Update Account Information</strong>
+                        </div>
+
+                        <div class="card-body">
+                            <a href="@Url.Action("AddPerson", "Persons")" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new person">
+                                <i class="fa-solid fa-user-plus"></i> New Account
+                            </a>
+                            <div class="table table-bordered table-striped table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <strong>@Html.DisplayNameFor(model => model.First().AccountNumber)</strong>
+                                            </th>
+                                            <th class="d-none d-sm-table-cell">
+                                                <strong> @Html.DisplayNameFor(model => model.First().OustandingBalance)</strong>
+                                            </th>
+                                            <th>
+                                                <strong>Action</strong>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var person in Model)
+                                        {
+                                            <tr>
+                                                <th scope="col">
+                                                    <strong>@person.AccountNumber</strong>
+                                                </th>
+                                                <th class="d-none d-sm-table-cell">
+                                                    <strong>@person.OustandingBalance</strong>
+                                                </th>
+                                                <th class="d-none d-sm-table-cell">
+                                                    <a href="@Url.Action("Edit", "Persons", new {personCode = person.PersonCode})" data-toggle="tooltip" title="Edit account information"><i class="fa fa-pen"></i></a>
+                                                </th>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@section scripts{
+
+}

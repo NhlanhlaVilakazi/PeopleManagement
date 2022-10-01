@@ -32,3 +32,9 @@ a{
 a:hover {
     color: red;
 }
+
+.add-btn {
+    cursor: pointer;
+    float: right;
+    margin-bottom: 15px;
+}
