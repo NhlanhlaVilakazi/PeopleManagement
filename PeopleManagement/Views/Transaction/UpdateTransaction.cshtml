@@ -1,6 +1,6 @@
 ﻿@model PeopleManagement.ViewModels.Transaction.TransactionViewModel
 @{
-    ViewBag.Title = "Add New Transaction"; 
+    ViewBag.Title = "Update Transaction"; 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Stylesheets{
@@ -12,15 +12,16 @@
     <div class="container-fluid">
         <div class="card mb-4">
             <div class="card-header">
-                <i class="fa-solid fa-folder-open"></i>
-                <strong>New Transaction</strong>
+                <i class="fa-solid fa-pen"></i>
+                <strong>Update Transaction</strong>
             </div>
             <div class="card-body">
 
-                @using (Html.BeginForm("AddTransaction", "Transaction", FormMethod.Post))
+                @using (Html.BeginForm("UpdateTransaction", "Transaction", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(x => x.AccountCode)
+                    @Html.HiddenFor(x => x.code)
                     @Html.Hidden("CaptureDate", DateTime.Now)
 
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -37,11 +38,10 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <span class="text-danger">*</span>
                         @Html.LabelFor(model => model.TransactionDate, htmlAttributes: new { @class = "font-weight-bold" })
                         <div class="input-group">
                             <input class="form-control" data-val="true" data-val-date="The field Transaction Date must be a date."
-                                    data-val-required="Transaction Date is required" id="TransactionDate" name="TransactionDate" readonly type="text"
+                                    data-val-required="Transaction Date is required" value="@Model?.TransactionDate" id="TransactionDate" name="TransactionDate" readonly type="text"
                                     aria-describedby="startDate-error" placeholder="yyyy/mm/dd">
                             <span class="input-group-prepend">
                                 <span class="input-group-text">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div>
-                        <button id="submitButton" type="submit" class="btn btn-primary">Submit <i class="fa-solid fa-pen-to-square"></i></button>
+                        <button id="submitButton" type="submit" class="btn btn-primary">Update <i class="fa-solid fa-pen-to-square"></i></button>
                     </div>
 
                 }

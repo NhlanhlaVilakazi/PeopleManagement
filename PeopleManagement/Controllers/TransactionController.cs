@@ -23,5 +23,25 @@ namespace PeopleManagement.Controllers
             business.AddNewTransaction(transaction);
             return RedirectToAction("AccountDetails", "Accounts", new { accountCode  = transaction.AccountCode});
         }
+
+        public IActionResult UpdateTransaction(int accountCode)
+        {
+            var business = new TransactionBusiness();
+            var transaction = business.GetTransactionByCode(accountCode);
+            return View(transaction);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult UpdateTransaction(TransactionViewModel transaction)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Some error occured, please try again later.");
+                return View(transaction);
+            }
+            var business = new TransactionBusiness();
+            business.UpdateTransaction(transaction);
+            return RedirectToAction("AccountDetails", "Accounts", new { accountCode = transaction.AccountCode });
+        }
     }
 }

@@ -12,5 +12,18 @@ namespace PeopleManagement.Business.TransactionBusiness
             using var repo = new TransactionRepository();
             repo.AddNewTransaction(ObjectMapper.Mapper.Map<Transaction>(transaction));
         }
+
+        public void UpdateTransaction(TransactionViewModel transaction)
+        {
+            using var repo = new TransactionRepository();
+            repo.UpdateTransaction(ObjectMapper.Mapper.Map<Transaction>(transaction));
+        }
+
+        public TransactionViewModel GetTransactionByCode(int transactionCode)
+        {
+            using var repo = new TransactionRepository();
+            var results = repo.GetTransactionByCode(transactionCode);
+            return ObjectMapper.Mapper.Map<TransactionViewModel>(results);
+        }
     }
 }

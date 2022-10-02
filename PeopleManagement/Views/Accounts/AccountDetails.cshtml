@@ -102,7 +102,7 @@
                                                 </th>
                                                 <th class="d-none d-sm-table-cell">
                                                     <a href="@Url.Action("AccountDetails", "Accounts", new {accountCode = account.AccountCode})" data-toggle="tooltip" title="More information"><i class="fa-solid fa-circle-info"></i></a> &nbsp; &nbsp;
-                                                    <a href="@Url.Action("UpdatePersonAccount", "Accounts", new {accountCode = account.AccountCode})" data-toggle="tooltip" title="Edit account information"><i class="fa fa-pen"></i></a>
+                                                    <a href="@Url.Action("UpdateTransaction", "Transaction", new {accountCode = account.AccountCode})" data-toggle="tooltip" title="Edit account information"><i class="fa fa-pen"></i></a>
                                                 </th>
                                             </tr>
                                         }

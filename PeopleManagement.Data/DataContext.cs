@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PeopleManagement.Data.DataModels.Accounts;
 using PeopleManagement.Data.DataModels.Persons;
+using PeopleManagement.Data.DataModels.Transaction;
 using PeopleManagement.Data.RepositotyServive;
-using System.Data.SqlClient;
 
 namespace PeopleManagement.Data
 {
@@ -10,6 +10,7 @@ namespace PeopleManagement.Data
     {
         public DbSet<Person.Person> People { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         public new DbSet<TEntity> Set<TEntity>() where TEntity : class
         {
