@@ -19,6 +19,7 @@ namespace PeopleManagement.Business.MappingBusiness
                 cfg.CreateMap<PersonViewModel, Person>().ReverseMap();
                 cfg.CreateMap<PersonAccountViewModel, PersonAccount>().ReverseMap();
                 cfg.CreateMap<AccountViewModel, Account>().ReverseMap();
+                cfg.CreateMap<AccountTransactionViewModel, AccountTransaction>().ReverseMap();
             });
 
             var mapper = config.CreateMapper();

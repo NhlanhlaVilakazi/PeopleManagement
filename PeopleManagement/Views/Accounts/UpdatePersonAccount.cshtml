@@ -1,0 +1,54 @@
+﻿@model PeopleManagement.ViewModels.Accounts.AccountViewModel
+@{
+    ViewBag.Title = "Upddate Account Information"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Stylesheets{
+
+}
+
+
+<main class="main">
+    <div class="container-fluid">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <strong>Create Account</strong>
+            </div>
+            <div class="card-body">
+
+                @using (Html.BeginForm("UpdatePersonAccount", "Accounts", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.code)
+                    @Html.HiddenFor(x => x.PersonCode)
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "font-weight-bold" })
+                        @Html.TextBoxFor(model => model.AccountNumber, new { @class = "form-control " , @style = "text-transform:uppercase" })
+                        @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.OutstandingBalance, htmlAttributes: new { @class = "font-weight-bold" })
+                        @Html.TextBoxFor(model => model.OutstandingBalance, new { @class = "form-control " , @style = "text-transform:uppercase" })
+                        @Html.ValidationMessageFor(model => model.OutstandingBalance, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div>
+                        <button id="submitButton" type="submit" class="btn btn-primary">Update <i class="fa-solid fa-pen-to-square"></i></button>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+</main>
+@section scripts{
+    
+}
+
+

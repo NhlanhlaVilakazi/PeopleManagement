@@ -22,10 +22,10 @@
                         <strong>View/Update Person Data</strong>
                     </div>
                     <div class="card-body">
-                        @using (Html.BeginForm("Edit", "Persons", FormMethod.Post))
+                        @using (Html.BeginForm("UpdatePersonAccount", "Accounts", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            @Html.Hidden("code", Model.First().PersonCode)
+                            @Html.Hidden("accountCode", Model.First().AccountCode)
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group mb-3">
@@ -104,7 +104,8 @@
                                                     <strong>@person.OustandingBalance</strong>
                                                 </th>
                                                 <th class="d-none d-sm-table-cell">
-                                                    <a href="@Url.Action("Edit", "Persons", new {personCode = person.PersonCode})" data-toggle="tooltip" title="Edit account information"><i class="fa fa-pen"></i></a>
+                                                    <a href="@Url.Action("AccountDetails", "Accounts", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="More information"><i class="fa-solid fa-circle-info"></i></a> &nbsp; &nbsp;
+                                                    <a href="@Url.Action("UpdatePersonAccount", "Accounts", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="Edit account information"><i class="fa fa-pen"></i></a>
                                                 </th>
                                             </tr>
                                         }

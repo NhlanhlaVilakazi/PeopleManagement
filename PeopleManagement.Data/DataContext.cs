@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PeopleManagement.Data.DataModels.Accounts;
 using PeopleManagement.Data.DataModels.Persons;
 using PeopleManagement.Data.RepositotyServive;
 using System.Data.SqlClient;
@@ -8,6 +9,7 @@ namespace PeopleManagement.Data
     public class DataContext : DbContext, IDbContext
     {
         public DbSet<Person.Person> People { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         public new DbSet<TEntity> Set<TEntity>() where TEntity : class
         {
@@ -27,6 +29,7 @@ namespace PeopleManagement.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PersonAccount>().HasNoKey().ToView(null);
+            modelBuilder.Entity<AccountTransaction>().HasNoKey().ToView(null);
         }
 
     }

@@ -12,5 +12,18 @@ namespace PeopleManagement.Business.AccountsBusiness
             using var repo = new AccountRepository();
             repo.AddNewAccount(ObjectMapper.Mapper.Map<Account>(accountInfo));
         }
+
+        public void UpdateAccountInformation(AccountViewModel accountInfo)
+        {
+            using var repo = new AccountRepository();
+            repo.UpdateAccount(ObjectMapper.Mapper.Map<Account>(accountInfo));
+        }
+
+        public AccountViewModel GetAccountInformation(int accountCode)
+        {
+            using var repo = new AccountRepository();
+            var accountInfo = repo.GetAccountInfomationByCode(accountCode);
+            return ObjectMapper.Mapper.Map<AccountViewModel>(accountInfo);
+        }
     }
 }

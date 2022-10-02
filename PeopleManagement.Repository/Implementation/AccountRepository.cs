@@ -24,6 +24,26 @@ namespace PeopleManagement.Repository.Implementation
             _dbContext.Database.ExecuteSqlRaw(query, parameters);
         }
 
+        public void UpdateAccount(Account accountModel)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@accountCode",  accountModel.code),
+                new SqlParameter("@accountNumber",  accountModel.AccountNumber),
+                new SqlParameter("@outstandingBalance",  accountModel.OutstandingBalance)
+            };
+            const string query = "[UpdatePersonAccount] @accountCode, @accountNumber, @outstandingBalance";
+            _dbContext.Database.ExecuteSqlRaw(query, parameters);
+        }
+
+        public Account GetAccountInfomationByCode(int accountCode)
+        {
+            SqlParameter[] parameter = {
+                new SqlParameter("@accountCode",  accountCode)
+            };
+            const string query = "EXEC [GetPersonAccount] @accountCode";
+            return _dbContext.Set<Account>().FromSqlRaw(query, parameter).ToList().FirstOrDefault();
+        }
+
         public void Dispose()
         {
             _dbContext = null;
