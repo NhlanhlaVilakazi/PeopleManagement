@@ -43,7 +43,7 @@ namespace PeopleManagement.Business.PersonsBusiness
 
         public List<PersonAccountViewModel> GetPersonAndAccountInfo(int personCode)
         {
-            using var repo = new PersonRepository();
+            using var repo = new PersonAccountRepository();
             var results = repo.GetPersonAndAccounts(personCode).GetAwaiter().GetResult();
             return ObjectMapper.Mapper.Map<List<PersonAccountViewModel>>(results);
         }

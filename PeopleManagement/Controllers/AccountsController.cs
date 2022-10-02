@@ -42,7 +42,7 @@ namespace PeopleManagement.Controllers
             }
             var bussiness = new AccountBusiness();
             bussiness.UpdateAccountInformation(accountInfo);
-            return RedirectToAction("Index", "Persons");
+            return RedirectToAction("PersonDetails", "Persons", new { personCode = accountInfo.PersonCode});
         }
 
         public IActionResult AccountDetails(int accountCode)

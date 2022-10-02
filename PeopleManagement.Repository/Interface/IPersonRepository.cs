@@ -1,5 +1,4 @@
-﻿using PeopleManagement.Data.DataModels.Persons;
-using PeopleManagement.Data.Person;
+﻿using PeopleManagement.Data.Person;
 
 namespace PeopleManagement.Repository.Interface
 {
@@ -10,6 +9,5 @@ namespace PeopleManagement.Repository.Interface
         void UpdatePerson(Person person);
         int DeletePerson(int personCode);
         void AddPerson(Person person);
-        Task<List<PersonAccount>> GetPersonAndAccounts(int personCode);
     }
 }

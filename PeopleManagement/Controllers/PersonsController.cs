@@ -22,12 +22,6 @@ namespace PeopleManagement.Controllers
             return View(person);
         }
 
-        public IActionResult Edit(int personCode)
-        {
-            var business = new PersonBusiness();
-            var pesron = business.GetPersonByCode(personCode);
-            return View(pesron);
-        }
 
         [HttpPost,ValidateAntiForgeryToken]
         public IActionResult Edit(PersonViewModel personModel)

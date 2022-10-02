@@ -1,6 +1,4 @@
-﻿
-
-using PeopleManagement.Data.DataModels.Transaction;
+﻿using PeopleManagement.Data.DataModels.Transaction;
 
 namespace PeopleManagement.Repository.Interface
 {

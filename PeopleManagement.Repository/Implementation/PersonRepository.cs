@@ -4,7 +4,6 @@ using PeopleManagement.Data.Person;
 using PeopleManagement.Repository.Interface;
 using Microsoft.Data.SqlClient;
 using System.Data;
-using PeopleManagement.Data.DataModels.Persons;
 
 namespace PeopleManagement.Repository.Implementation
 {
@@ -65,15 +64,6 @@ namespace PeopleManagement.Repository.Implementation
             };
             const string query = "[AddNewPerson] @name, @surname, @idNumber";
             _dbContext.Database.ExecuteSqlRaw(query, parameters);
-        }
-
-        public Task<List<PersonAccount>> GetPersonAndAccounts(int personCode)
-        {
-            SqlParameter[] parameter = {
-                new SqlParameter("@personCode",  personCode)
-            };
-            const string query = "[GetPersonAndListOfAccounts] @personCode";
-            return _dbContext.Set<PersonAccount>().FromSqlRaw(query, parameter).ToListAsync();
         }
 
         public void Dispose()
