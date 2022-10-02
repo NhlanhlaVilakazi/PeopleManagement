@@ -1,0 +1,88 @@
+﻿@model PeopleManagement.ViewModels.Transaction.TransactionViewModel
+@{
+    ViewBag.Title = "Add New Person"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Stylesheets{
+<link
+      href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+}
+
+<main class="main">
+    <div class="container-fluid">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fa-solid fa-folder-open"></i>
+                <strong>New Transaction</strong>
+            </div>
+            <div class="card-body">
+
+                @using (Html.BeginForm("AddTransaction", "Transaction", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.AccountCode)
+                    @Html.Hidden("CaptureDate", DateTime.Now)
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "font-weight-bold" })
+                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "font-weight-bold" })
+                        @Html.TextBoxFor(model => model.Amount, new { @class = "form-control"})
+                        @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <span class="text-danger">*</span>
+                        @Html.LabelFor(model => model.TransactionDate, htmlAttributes: new { @class = "font-weight-bold" })
+                        <div class="input-group">
+                            <input class="form-control" data-val="true" data-val-date="The field Transaction Date must be a date."
+                                    data-val-required="Transaction Date is required" id="TransactionDate" name="TransactionDate" readonly type="text"
+                                    aria-describedby="startDate-error" placeholder="yyyy/mm/dd">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fa fa-calendar fa-2x"></i>
+                                </span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div>
+                        <button id="submitButton" type="submit" class="btn btn-primary">Submit <i class="fa-solid fa-pen-to-square"></i></button>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+</main>
+@section scripts{
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+      integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+        $(function () {
+            //const nDate = moment().toDate();
+
+                $("#TransactionDate").datepicker({
+                format: "yyyy/mm/dd",
+                todayBtn: "linked",
+                endDate: "+5",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+}
+
+

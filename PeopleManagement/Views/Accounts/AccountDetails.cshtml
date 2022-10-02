@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="@Url.Action("CreateAccount", "Accounts", new{ accountCode = Model?.First().AccountCode })" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Captured a new transaction">
+                            <a href="@Url.Action("AddTransaction", "Transaction", new{ accountCode = Model?.First().AccountCode })" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Captured a new transaction">
                                 <i class="fa-solid fa-plus"></i> New Transaction
                             </a>
 

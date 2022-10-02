@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using PeopleManagement.Data.DataModels.Accounts;
 using PeopleManagement.Data.DataModels.Persons;
+using PeopleManagement.Data.DataModels.Transaction;
 using PeopleManagement.Data.Person;
 using PeopleManagement.Models.Person;
 using PeopleManagement.ViewModels.Accounts;
 using PeopleManagement.ViewModels.Persons;
+using PeopleManagement.ViewModels.Transaction;
 
 namespace PeopleManagement.Business.MappingBusiness
 {
@@ -19,6 +21,7 @@ namespace PeopleManagement.Business.MappingBusiness
                 cfg.CreateMap<PersonViewModel, Person>().ReverseMap();
                 cfg.CreateMap<PersonAccountViewModel, PersonAccount>().ReverseMap();
                 cfg.CreateMap<AccountViewModel, Account>().ReverseMap();
+                cfg.CreateMap<TransactionViewModel, Transaction>().ReverseMap();
                 cfg.CreateMap<AccountTransactionViewModel, AccountTransaction>().ReverseMap();
             });
 
