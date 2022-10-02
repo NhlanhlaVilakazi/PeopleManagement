@@ -13,6 +13,7 @@ namespace PeopleManagement.ViewModels.Accounts
         public string? AccountNumber { get; set; }
 
         [Required]
+        [DataType(DataType.Currency)]
         [DisplayName("Outstanding Account")]
         public decimal OutstandingBalance { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿@model List<PeopleManagement.ViewModels.Persons.PersonAccountViewModel>
+﻿@using Microsoft.AspNetCore.Http
+@model List<PeopleManagement.ViewModels.Persons.PersonAccountViewModel>
 @{
     ViewBag.Title = "View Or Update Person Data";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,7 +25,7 @@
                         @using (Html.BeginForm("Edit", "Persons", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            @Html.HiddenFor(x => x.First().PersonCode)
+                            @Html.Hidden("code", Model.First().PersonCode)
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group mb-3">

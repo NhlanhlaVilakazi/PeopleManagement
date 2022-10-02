@@ -18,8 +18,8 @@ namespace PeopleManagement.Controllers
         public IActionResult PersonDetails(int personCode)
         {
             var business = new PersonBusiness();
-            var pesron = business.GetPersonAndAccountInfo(personCode);
-            return View(pesron);
+            var person = business.GetPersonAndAccountInfo(personCode);
+            return View(person);
         }
 
         public IActionResult Edit(int personCode)

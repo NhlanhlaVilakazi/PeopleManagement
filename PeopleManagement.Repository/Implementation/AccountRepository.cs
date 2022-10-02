@@ -2,7 +2,7 @@
 using PeopleManagement.Data;
 using PeopleManagement.Data.DataModels.Accounts;
 using PeopleManagement.Repository.Interface;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace PeopleManagement.Repository.Implementation
 {
