@@ -9,5 +9,6 @@ namespace PeopleManagement.Repository.Interface
         void UpdatePerson(Person person);
         int DeletePerson(int personCode);
         void AddPerson(Person person);
+        bool PersonAlreadyExist(string idNumber);
     }
 }

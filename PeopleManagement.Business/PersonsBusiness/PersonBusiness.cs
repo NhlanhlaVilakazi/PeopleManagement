@@ -47,5 +47,11 @@ namespace PeopleManagement.Business.PersonsBusiness
             var results = repo.GetPersonAndAccounts(personCode).GetAwaiter().GetResult();
             return ObjectMapper.Mapper.Map<List<PersonAccountViewModel>>(results);
         }
+
+        public bool CheckIfPersonAlreadyExist(string idNumber)
+        {
+            using var repo = new PersonRepository();
+            return repo.PersonAlreadyExist(idNumber);
+        }
     }
 }

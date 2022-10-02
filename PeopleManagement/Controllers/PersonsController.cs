@@ -62,5 +62,13 @@ namespace PeopleManagement.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public JsonResult CheckIfPersonAlreadyExist(string idNumber)
+        {
+            var business = new PersonBusiness();
+            var exist = business.CheckIfPersonAlreadyExist(idNumber);
+            return Json(exist);
+        }
+
     }
 }

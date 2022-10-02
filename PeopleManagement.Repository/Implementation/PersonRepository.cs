@@ -66,6 +66,17 @@ namespace PeopleManagement.Repository.Implementation
             _dbContext.Database.ExecuteSqlRaw(query, parameters);
         }
 
+        public bool PersonAlreadyExist(string idNumber)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@idNumber", idNumber),
+                new SqlParameter("@exist",0){  Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Bit }
+            };
+
+            _dbContext.Database.ExecuteSqlRawAsync("[DoesPersonAlreadyExist] @idNumber, @exist OUT", parameters).GetAwaiter().GetResult();
+            return (bool)(parameters[1].Value ?? 0);
+        }
+
         public void Dispose()
         {
             _dbContext = null;
