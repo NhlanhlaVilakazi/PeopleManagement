@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Person\" />
+    <Compile Remove="Views\Person\**" />
+    <Content Remove="Views\Person\**" />
+    <EmbeddedResource Remove="Views\Person\**" />
+    <None Remove="Views\Person\**" />
   </ItemGroup>
 
   <ItemGroup>

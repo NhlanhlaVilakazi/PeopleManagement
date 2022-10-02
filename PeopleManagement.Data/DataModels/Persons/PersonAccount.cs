@@ -7,8 +7,8 @@
         public string? Surname { get; set; }
         public string? IdNumber { get; set; }
 
-        public int AccountCode { get; set; }
+        public int? AccountCode { get; set; }
         public string? AccountNumber { get; set; }
-        public decimal OustandingBalance { get; set; }
+        public decimal? OustandingBalance { get; set; }
     }
 }

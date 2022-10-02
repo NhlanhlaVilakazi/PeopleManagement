@@ -56,3 +56,7 @@ a:hover {
     right: 0px;
     overflow: auto;
 }
+
+.account-alert{
+    margin-top: 35px;
+}

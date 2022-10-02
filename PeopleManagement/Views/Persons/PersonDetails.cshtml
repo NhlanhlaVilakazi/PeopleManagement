@@ -62,10 +62,21 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="@Url.Action("CreateAccount", "Accounts", new{ personCode = Model?.First().PersonCode })" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new person">
+                            <a href="@Url.Action("CreateAccount", "Accounts", new{ personCode = Model?.First().PersonCode })" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new account">
                                 <i class="fa-solid fa-user-plus"></i> New Account
                             </a>
-                            <div class="table table-bordered table-striped table-responsive">
+                            @if(Model.Any(x => x.AccountCode is null))
+                            {
+                                <div class="card-body account-alert">
+                                    <div class="alert alert-primary" role="alert">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <text>No Account Information Available</text>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="table table-bordered table-striped table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -99,6 +110,8 @@
                                     </tbody>
                                 </table>
                             </div>
+                            }
+                            
                         </div>
                     </div>
 

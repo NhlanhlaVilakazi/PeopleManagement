@@ -17,6 +17,6 @@ namespace PeopleManagement.ViewModels.Persons
         public string? AccountNumber { get; set; }
         
         [DisplayName("Oustanding Balance")]
-        public decimal OustandingBalance { get; set; }
+        public decimal? OustandingBalance { get; set; }
     }
 }
