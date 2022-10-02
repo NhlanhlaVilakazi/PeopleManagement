@@ -23,8 +23,8 @@
                     <div class="card-body">
                         @using (Html.BeginForm("Edit", "Persons", FormMethod.Post))
                         {
-                            @Html.HiddenFor(x => x.First().PersonCode)
                             @Html.AntiForgeryToken()
+                            @Html.HiddenFor(x => x.First().PersonCode)
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group mb-3">
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="card-body">
-                            <a href="@Url.Action("AddPerson", "Persons")" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new person">
+                            <a href="@Url.Action("CreateAccount", "Accounts", new{ personCode = Model?.First().PersonCode })" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new person">
                                 <i class="fa-solid fa-user-plus"></i> New Account
                             </a>
                             <div class="table table-bordered table-striped table-responsive">

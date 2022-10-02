@@ -8,21 +8,21 @@ namespace PeopleManagement.Controllers
 {
     public class PersonsController : Controller
     {
-        public ActionResult Index(int? page, string searchString)
+        public IActionResult Index(int? page, string searchString)
         {
             var business = new PersonBusiness();
             var results = business.GetPersons(searchString).ToPagedList(page ?? 1, (int)PageSizeEnum.size);
             return View(results);
         }
 
-        public ActionResult PersonDetails(int personCode)
+        public IActionResult PersonDetails(int personCode)
         {
             var business = new PersonBusiness();
             var pesron = business.GetPersonAndAccountInfo(personCode);
             return View(pesron);
         }
 
-        public ActionResult Edit(int personCode)
+        public IActionResult Edit(int personCode)
         {
             var business = new PersonBusiness();
             var pesron = business.GetPersonByCode(personCode);
@@ -30,7 +30,7 @@ namespace PeopleManagement.Controllers
         }
 
         [HttpPost,ValidateAntiForgeryToken]
-        public ActionResult Edit(PersonViewModel personModel)
+        public IActionResult Edit(PersonViewModel personModel)
         {
             if (!ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace PeopleManagement.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult DeletePerson(int personCode)
+        public IActionResult DeletePerson(int personCode)
         {
             var business = new PersonBusiness();
             int affectedRows = business.DeletePerson(personCode);
@@ -51,12 +51,12 @@ namespace PeopleManagement.Controllers
             return View("Index");
         }
 
-        public ActionResult AddPerson()
+        public IActionResult AddPerson()
         {
             return View();
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult AddPerson(PersonViewModel personModel)
+        public IActionResult AddPerson(PersonViewModel personModel)
         {
             if (!ModelState.IsValid)
             {
