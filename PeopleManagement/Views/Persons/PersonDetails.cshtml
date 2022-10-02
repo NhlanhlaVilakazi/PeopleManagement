@@ -19,7 +19,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fa-solid fa-user"></i>
-                        <strong>View/Update Person Data</strong>
+                        <strong>Update Personal Information</strong>
                     </div>
                     <div class="card-body">
                         @using (Html.BeginForm("UpdatePersonAccount", "Accounts", FormMethod.Post))
@@ -64,7 +64,7 @@
 
                         <div class="card-body">
                             <a href="@Url.Action("CreateAccount", "Accounts", new{ personCode = Model?.First().PersonCode })" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new account">
-                                <i class="fa-solid fa-user-plus"></i> New Account
+                                <i class="fa-solid fa-plus"></i> New Account
                             </a>
                             @if(Model.Any(x => x.AccountCode is null))
                             {
@@ -104,8 +104,7 @@
                                                     <strong>@person.OustandingBalance</strong>
                                                 </th>
                                                 <th class="d-none d-sm-table-cell">
-                                                    <a href="@Url.Action("AccountDetails", "Accounts", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="More information"><i class="fa-solid fa-circle-info"></i></a> &nbsp; &nbsp;
-                                                    <a href="@Url.Action("UpdatePersonAccount", "Accounts", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="Edit account information"><i class="fa fa-pen"></i></a>
+                                                    <a href="@Url.Action("AccountDetails", "Accounts", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="View or edit account information"><i class="fa fa-pen"></i></a>
                                                 </th>
                                             </tr>
                                         }

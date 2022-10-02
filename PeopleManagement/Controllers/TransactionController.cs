@@ -23,8 +23,8 @@ namespace PeopleManagement.Controllers
             business.AddNewTransaction(transaction);
             return RedirectToAction("AccountDetails", "Accounts", new { accountCode  = transaction.AccountCode});
         }
-
-        public IActionResult UpdateTransaction(int accountCode)
+        //Fix
+        public IActionResult TransactionDetails(int accountCode)
         {
             var business = new TransactionBusiness();
             var transaction = business.GetTransactionByCode(accountCode);
@@ -32,7 +32,7 @@ namespace PeopleManagement.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult UpdateTransaction(TransactionViewModel transaction)
+        public IActionResult TransactionDetails(TransactionViewModel transaction)
         {
             if (!ModelState.IsValid)
             {

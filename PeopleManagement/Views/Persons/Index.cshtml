@@ -50,7 +50,7 @@
                 
                 <div class="card-body">
                     <a href="@Url.Action("AddPerson", "Persons")" class="btn btn-secondary position-relative add-btn" data-toggle="tooltip" title="Add new person">
-                      <i class="fa-solid fa-user-plus"></i> Add New 
+                      <i class="fa-solid fa-user-plus"></i> New Person
                     </a>
                     <div class="table table-bordered table-striped table-responsive">
                         <table class="table">
@@ -85,8 +85,7 @@
                                             <strong>@person.IdNumber</strong>
                                         </th>
                                         <th class="d-none d-sm-table-cell">
-                                            <a href="@Url.Action("PersonDetails", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="More information"><i class="fa-solid fa-circle-info"></i></a> &nbsp; &nbsp;
-                                            <a href="@Url.Action("Edit", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="Edit person"><i class="fa fa-pen"></i></a> &nbsp; &nbsp;
+                                            <a href="@Url.Action("PersonDetails", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="View or edit person"><i class="fa fa-pen"></i></a> &nbsp; &nbsp;
                                             <a href="@Url.Action("DeletePerson", "Persons", new {personCode = person.code})" data-toggle="tooltip" title="Delete @person.Name @person.Surname"><i class="fa fa-trash"></i></a>
                                         </th>
                                     </tr>
