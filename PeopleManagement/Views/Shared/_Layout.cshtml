@@ -11,40 +11,15 @@
     @await RenderSectionAsync("Stylesheets", required: false)
 </head>
 <body>
-    <!--<header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PeopleManagement</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>-->
-    
-    <div class="hero border-bottom box-shadow mb-3">
-        <nav>
-            <a href="#default" class="logo"><strong>Logo</strong></a>
+        <div class="navbar">
+            <a href="@Url.Action("Index", "Home")" class="logo"><img src="~/images/logoo.png" width="130px" height="100px"/></a>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="@Url.Action("Index","Persons")">Persons</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-        </nav>
-    </div>
-
+        </div>
 
     <div class="container">
         <main role="main" class="pb-3">
@@ -52,11 +27,6 @@
         </main>
     </div>
 
-    @*<footer class="border-top footer text-muted">
-        <div class="container">
-            <CENTER><strong> &copy; 2022 - Managing Personnel</strong></CENTER>
-        </div>
-    </footer>*@
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
