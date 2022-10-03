@@ -72,14 +72,12 @@
     ></script>
     <script>
         $(function () {
-            //const nDate = moment().toDate();
-
-                $("#TransactionDate").datepicker({
-                format: "yyyy/mm/dd",
-                todayBtn: "linked",
-                endDate: "+5",
-                autoclose: true,
-                todayHighlight: true
+            $("#TransactionDate").datepicker({
+            format: "yyyy/mm/dd",
+            todayBtn: "linked",
+            maxDate: new Date(),
+            autoclose: true,
+            todayHighlight: true
             });
         });
     </script>
