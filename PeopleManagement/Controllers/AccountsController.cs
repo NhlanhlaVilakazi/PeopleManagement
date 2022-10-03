@@ -51,5 +51,13 @@ namespace PeopleManagement.Controllers
             var results = business.GetAccountAndTransactionInfo(accountCode);
             return View(results);
         }
+
+        [HttpPost]
+        public JsonResult CheckIfAccountExist(string accountNumber, bool isUpdate)
+        {
+            var business = new AccountBusiness();
+            var exist = business.DoesAccountExist(accountNumber, isUpdate);
+            return Json(exist);
+        }
     }
 }

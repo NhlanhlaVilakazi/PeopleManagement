@@ -8,7 +8,6 @@ namespace PeopleManagement.Business.PersonsBusiness
 {
     public class PersonBusiness
     {
-        private readonly PersonRepository _personRepository;
         public List<PersonViewModel> GetPersons(string searchString)
         {
             using var repo = new PersonRepository();
@@ -48,10 +47,10 @@ namespace PeopleManagement.Business.PersonsBusiness
             return ObjectMapper.Mapper.Map<List<PersonAccountViewModel>>(results);
         }
 
-        public bool CheckIfPersonAlreadyExist(string idNumber)
+        public bool CheckIfPersonAlreadyExist(string idNumber, bool isUpate)
         {
             using var repo = new PersonRepository();
-            return repo.PersonAlreadyExist(idNumber);
+            return repo.PersonAlreadyExist(idNumber, isUpate);
         }
     }
 }

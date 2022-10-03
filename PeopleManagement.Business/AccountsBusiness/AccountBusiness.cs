@@ -25,5 +25,11 @@ namespace PeopleManagement.Business.AccountsBusiness
             var accountInfo = repo.GetAccountInfomationByCode(accountCode);
             return ObjectMapper.Mapper.Map<AccountViewModel>(accountInfo);
         }
+
+        public bool DoesAccountExist(string accountNumber, bool isUpdate)
+        {
+            using var repo = new AccountRepository();
+            return repo.AccountAlreadyExist(accountNumber, isUpdate);
+        }
     }
 }

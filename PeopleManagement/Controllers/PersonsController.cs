@@ -63,10 +63,10 @@ namespace PeopleManagement.Controllers
         }
 
         [HttpPost]
-        public JsonResult CheckIfPersonAlreadyExist(string idNumber)
+        public JsonResult CheckIfPersonAlreadyExist(string idNumber, bool isUpdate)
         {
             var business = new PersonBusiness();
-            var exist = business.CheckIfPersonAlreadyExist(idNumber);
+            var exist = business.CheckIfPersonAlreadyExist(idNumber, isUpdate);
             return Json(exist);
         }
 

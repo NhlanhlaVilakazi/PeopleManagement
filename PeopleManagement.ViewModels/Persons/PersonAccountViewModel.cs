@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace PeopleManagement.ViewModels.Persons
 {
@@ -9,6 +10,7 @@ namespace PeopleManagement.ViewModels.Persons
         public string? Surname { get; set; }
 
         [DisplayName("ID Number")]
+        [Remote("CheckIfPersonAlreadyExist", "Persons", AdditionalFields = "isUpdate", HttpMethod = "POST", ErrorMessage = "Person already exists. Please enter a different ID Number.")]
         public string? IdNumber { get; set; }
 
         public string? AccountCode { get; set; }

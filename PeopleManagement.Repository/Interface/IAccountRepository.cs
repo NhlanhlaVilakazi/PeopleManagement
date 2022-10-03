@@ -7,5 +7,6 @@ namespace PeopleManagement.Repository.Interface
         void AddNewAccount(Account accountModel);
         void UpdateAccount(Account accountModel);
         Account GetAccountInfomationByCode(int accountCode);
+        bool AccountAlreadyExist(string accountNumber, bool isUpate);
     }
 }

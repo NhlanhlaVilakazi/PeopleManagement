@@ -3,6 +3,7 @@ using PeopleManagement.Data;
 using PeopleManagement.Data.DataModels.Accounts;
 using PeopleManagement.Repository.Interface;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace PeopleManagement.Repository.Implementation
 {
@@ -28,10 +29,9 @@ namespace PeopleManagement.Repository.Implementation
         {
             SqlParameter[] parameters = {
                 new SqlParameter("@accountCode",  accountModel.code),
-                new SqlParameter("@accountNumber",  accountModel.AccountNumber),
-                new SqlParameter("@outstandingBalance",  accountModel.OutstandingBalance)
+                new SqlParameter("@accountNumber",  accountModel.AccountNumber)
             };
-            const string query = "[UpdatePersonAccount] @accountCode, @accountNumber, @outstandingBalance";
+            const string query = "[UpdatePersonAccount] @accountCode, @accountNumber";
             _dbContext.Database.ExecuteSqlRaw(query, parameters);
         }
 
@@ -42,6 +42,18 @@ namespace PeopleManagement.Repository.Implementation
             };
             const string query = "EXEC [GetPersonAccount] @accountCode";
             return _dbContext.Set<Account>().FromSqlRaw(query, parameter).ToList().FirstOrDefault();
+        }
+
+        public bool AccountAlreadyExist(string accountNumber, bool isUpate)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@accountNumber", accountNumber),
+                new SqlParameter("@isUpate", isUpate),
+                new SqlParameter("@exist",0){  Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Bit }
+            };
+
+            _dbContext.Database.ExecuteSqlRawAsync("[DoesAccountAlreadyExist] @accountNumber, @isUpate, @exist OUT", parameters).GetAwaiter().GetResult();
+            return (bool)(parameters[2].Value ?? 0);
         }
 
         public void Dispose()

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace PeopleManagement.ViewModels.Accounts
@@ -10,6 +11,7 @@ namespace PeopleManagement.ViewModels.Accounts
 
         [Required]
         [DisplayName("Account Number")]
+        [Remote("CheckIfAccountExist", "Accounts", HttpMethod = "POST", ErrorMessage = "Account already exists. Please enter a different Account Number.")]
         public string? AccountNumber { get; set; }
 
         [Required]

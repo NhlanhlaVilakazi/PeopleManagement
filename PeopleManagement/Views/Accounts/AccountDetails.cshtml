@@ -25,6 +25,7 @@
                         @using (Html.BeginForm("UpdatePersonAccount", "Accounts", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
+                            @Html.Hidden("isUpdate", true)
                             @Html.Hidden("code", Model?.First().AccountCode)
                             @Html.Hidden("PersonCode", Model?.First().PersonCode)
 
@@ -33,12 +34,6 @@
                                 @Html.LabelFor(model => model.First().AccountNumber, htmlAttributes: new { @class = "font-weight-bold" })
                                 @Html.TextBoxFor(model => model.First().AccountNumber, new { @class = "form-control " , @style = "text-transform:uppercase" })
                                 @Html.ValidationMessageFor(model => model.First().AccountNumber, "", new { @class = "text-danger" })
-                            </div>
-
-                            <div class="form-group mb-3">
-                                @Html.LabelFor(model => model.First().OutstandingBalance, htmlAttributes: new { @class = "font-weight-bold" })
-                                @Html.TextBoxFor(model => model.First().OutstandingBalance, new { @class = "form-control " , @style = "text-transform:uppercase" })
-                                @Html.ValidationMessageFor(model => model.First().OutstandingBalance, "", new { @class = "text-danger" })
                             </div>
 
                             <div>

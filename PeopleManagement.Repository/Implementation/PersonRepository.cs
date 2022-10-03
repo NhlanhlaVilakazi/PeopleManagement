@@ -36,7 +36,7 @@ namespace PeopleManagement.Repository.Implementation
         {
             SqlParameter[] parameters = {
                 new SqlParameter("@personCode",  person.code),
-                new SqlParameter("@name",  person.Name),
+                new SqlParameter("@name",  person.Name ?? (object)DBNull.Value),
                 new SqlParameter("@surname",  person.Surname),
                 new SqlParameter("@idNumber",  person.IdNumber)
             };
@@ -58,7 +58,7 @@ namespace PeopleManagement.Repository.Implementation
         public void AddPerson(Person person)
         {
             SqlParameter[] parameters = {
-                new SqlParameter("@name",  person.Name),
+                new SqlParameter("@name",  person.Name ?? (object)DBNull.Value),
                 new SqlParameter("@surname",  person.Surname),
                 new SqlParameter("@idNumber",  person.IdNumber)
             };
@@ -66,15 +66,16 @@ namespace PeopleManagement.Repository.Implementation
             _dbContext.Database.ExecuteSqlRaw(query, parameters);
         }
 
-        public bool PersonAlreadyExist(string idNumber)
+        public bool PersonAlreadyExist(string idNumber, bool isUpate)
         {
             SqlParameter[] parameters = {
                 new SqlParameter("@idNumber", idNumber),
+                new SqlParameter("@isUpate", isUpate),
                 new SqlParameter("@exist",0){  Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Bit }
             };
 
-            _dbContext.Database.ExecuteSqlRawAsync("[DoesPersonAlreadyExist] @idNumber, @exist OUT", parameters).GetAwaiter().GetResult();
-            return (bool)(parameters[1].Value ?? 0);
+            _dbContext.Database.ExecuteSqlRawAsync("[DoesPersonAlreadyExist] @idNumber, @isUpate, @exist OUT", parameters).GetAwaiter().GetResult();
+            return (bool)(parameters[2].Value ?? 0);
         }
 
         public void Dispose()
