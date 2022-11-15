@@ -16,7 +16,8 @@ namespace PeopleManagement.Repository.Implementation
         }
         public void AddNewAccount(Account accountModel)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = 
+            {
                 new SqlParameter("@personCode",  accountModel.PersonCode),
                 new SqlParameter("@accountNumber",  accountModel.AccountNumber),
                 new SqlParameter("@outstandingBalance",  accountModel.OutstandingBalance)
@@ -27,7 +28,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public void UpdateAccount(Account accountModel)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = 
+            {
                 new SqlParameter("@accountCode",  accountModel.code),
                 new SqlParameter("@accountNumber",  accountModel.AccountNumber)
             };
@@ -37,7 +39,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public Account GetAccountInfomationByCode(int accountCode)
         {
-            SqlParameter[] parameter = {
+            SqlParameter[] parameter = 
+            {
                 new SqlParameter("@accountCode",  accountCode)
             };
             const string query = "EXEC [GetPersonAccount] @accountCode";
@@ -46,7 +49,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public bool AccountAlreadyExist(string accountNumber, bool isUpate)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = 
+            {
                 new SqlParameter("@accountNumber", accountNumber),
                 new SqlParameter("@isUpate", isUpate),
                 new SqlParameter("@exist",0){  Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Bit }

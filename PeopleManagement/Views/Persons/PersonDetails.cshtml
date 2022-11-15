@@ -105,7 +105,7 @@
                                                     <strong>@person.OustandingBalance</strong>
                                                 </th>
                                                 <th class="d-none d-sm-table-cell">
-                                                    <a href="@Url.Action("AccountDetails", "Accounts", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="View or edit account information"><i class="fa fa-pen"></i></a>
+                                                    <a href="@Url.Action("AccountDetails", "AccountTransaction", new {accountCode = person.AccountCode})" data-toggle="tooltip" title="View or edit account information"><i class="fa fa-pen"></i></a>
                                                 </th>
                                             </tr>
                                         }

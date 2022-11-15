@@ -15,9 +15,10 @@ namespace PeopleManagement.Repository.Implementation
         }
         public Task<List<AccountTransaction>> GetAccountAndTransactionInfo(int accountCode)
         {
-                SqlParameter[] parameter = {
-                new SqlParameter("@accountCode",  accountCode)
-            };
+                SqlParameter[] parameter = 
+                {
+                    new SqlParameter("@accountCode",  accountCode)
+                };
                 const string query = "[GetAccountAndListOfTransactions] @accountCode";
                 return _dbContext.Set<AccountTransaction>().FromSqlRaw(query, parameter).ToListAsync();
         }

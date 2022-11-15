@@ -16,7 +16,8 @@ namespace PeopleManagement.Repository.Implementation
         }
         public Task<List<Person>> GetPersons(string searchString)
         {
-            SqlParameter[] parameter = {
+            SqlParameter[] parameter = 
+            {
                 new SqlParameter("@searchString", string.IsNullOrEmpty(searchString) ? (object) DBNull.Value : (object) searchString)
             };
             const string query = "EXEC [GetPersons] @searchString";
@@ -25,7 +26,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public Person GetPersonByCode(int personCode)
         {
-            SqlParameter[] parameter = {
+            SqlParameter[] parameter = 
+            {
                 new SqlParameter("@personCode",  personCode)
             };
             const string query = "EXEC [GetPersons] @personCode";
@@ -34,7 +36,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public void UpdatePerson(Person person)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = 
+            {
                 new SqlParameter("@personCode",  person.code),
                 new SqlParameter("@name",  person.Name ?? (object)DBNull.Value),
                 new SqlParameter("@surname",  person.Surname),
@@ -46,7 +49,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public int DeletePerson(int personCode)
         {
-            SqlParameter[] parameter = {
+            SqlParameter[] parameter = 
+            {
                 new SqlParameter("@personCode",  personCode),
                 new SqlParameter("@affectedRows",  0) { Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Int}
             };
@@ -57,7 +61,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public void AddPerson(Person person)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = 
+            {
                 new SqlParameter("@name",  person.Name ?? (object)DBNull.Value),
                 new SqlParameter("@surname",  person.Surname),
                 new SqlParameter("@idNumber",  person.IdNumber)
@@ -68,7 +73,8 @@ namespace PeopleManagement.Repository.Implementation
 
         public bool PersonAlreadyExist(string idNumber, bool isUpate)
         {
-            SqlParameter[] parameters = {
+            SqlParameter[] parameters = 
+            {
                 new SqlParameter("@idNumber", idNumber),
                 new SqlParameter("@isUpate", isUpate),
                 new SqlParameter("@exist",0){  Direction = ParameterDirection.Output, SqlDbType = SqlDbType.Bit }

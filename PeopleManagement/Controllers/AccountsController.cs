@@ -1,12 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PeopleManagement.Business.AccountsBusiness;
 using PeopleManagement.Business.AccountTransactionBusiness;
+using PeopleManagement.Business.PersonsBusiness;
+using PeopleManagement.Repository.Interface;
 using PeopleManagement.ViewModels.Accounts;
 
 namespace PeopleManagement.Controllers
 {
     public class AccountsController : Controller
     {
+        private readonly IAccountRepository _accountRepository;
+        private readonly AccountBusiness _accountBusiness;
+
+        public AccountsController(IAccountRepository accountRepo)
+        {
+            _accountRepository = accountRepo;
+            _accountBusiness = new AccountBusiness(_accountRepository);
+        }
         public IActionResult CreateAccount(int personCode)
         {
             return View(new AccountViewModel { PersonCode = personCode});
@@ -20,15 +30,13 @@ namespace PeopleManagement.Controllers
                 ModelState.AddModelError("", "Some error occured, please try again later.");
                 return View(accountInfo);
             }
-            var bussiness = new AccountBusiness();
-            bussiness.CreatePersonAccount(accountInfo);
+            _accountBusiness.CreatePersonAccount(accountInfo);
             return RedirectToAction("PersonDetails", "Persons", new { personCode = accountInfo.PersonCode});
         }
 
         public IActionResult UpdatePersonAccount(int accountCode)
         {
-            var business = new AccountBusiness();
-            var accountInfo = business.GetAccountInformation(accountCode);
+            var accountInfo = _accountBusiness.GetAccountInformation(accountCode);
             return View(accountInfo);
         }
 
@@ -40,23 +48,15 @@ namespace PeopleManagement.Controllers
                 ModelState.AddModelError("", "Some error occured, please try again later.");
                 return View(accountInfo);
             }
-            var bussiness = new AccountBusiness();
-            bussiness.UpdateAccountInformation(accountInfo);
+            _accountBusiness.UpdateAccountInformation(accountInfo);
             return RedirectToAction("PersonDetails", "Persons", new { personCode = accountInfo.PersonCode});
         }
-
-        public IActionResult AccountDetails(int accountCode)
-        {
-            var business = new AccountTransactionBusiness();
-            var results = business.GetAccountAndTransactionInfo(accountCode);
-            return View(results);
-        }
+        
 
         [HttpPost]
         public JsonResult CheckIfAccountExist(string accountNumber, bool isUpdate)
         {
-            var business = new AccountBusiness();
-            var exist = business.DoesAccountExist(accountNumber, isUpdate);
+            var exist = _accountBusiness.DoesAccountExist(accountNumber, isUpdate);
             return Json(exist);
         }
     }

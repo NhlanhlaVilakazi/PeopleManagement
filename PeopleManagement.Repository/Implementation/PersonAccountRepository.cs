@@ -15,7 +15,8 @@ namespace PeopleManagement.Repository.Implementation
         }
         public Task<List<PersonAccount>> GetPersonAndAccounts(int personCode)
         {
-            SqlParameter[] parameter = {
+            SqlParameter[] parameter = 
+            {
                 new SqlParameter("@personCode",  personCode)
             };
             const string query = "[GetPersonAndListOfAccounts] @personCode";

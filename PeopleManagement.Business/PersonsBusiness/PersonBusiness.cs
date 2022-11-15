@@ -2,16 +2,21 @@
 using PeopleManagement.Data.Person;
 using PeopleManagement.Models.Person;
 using PeopleManagement.Repository.Implementation;
+using PeopleManagement.Repository.Interface;
 using PeopleManagement.ViewModels.Persons;
 
 namespace PeopleManagement.Business.PersonsBusiness
 {
     public class PersonBusiness
     {
+        private readonly IPersonRepository _person;
+        public PersonBusiness(IPersonRepository person) 
+        {
+            _person = person;
+        }
         public List<PersonViewModel> GetPersons(string searchString)
         {
-            using var repo = new PersonRepository();
-            var persons = repo.GetPersons(searchString).GetAwaiter().GetResult();
+            var persons = _person.GetPersons(searchString).GetAwaiter().GetResult();
             return ObjectMapper.Mapper.Map<List<PersonViewModel>>(persons);
         }
 

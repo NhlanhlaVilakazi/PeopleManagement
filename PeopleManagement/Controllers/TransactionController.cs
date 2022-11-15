@@ -1,11 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PeopleManagement.Business.TransactionBusiness;
+using PeopleManagement.Repository.Interface;
 using PeopleManagement.ViewModels.Transaction;
 
 namespace PeopleManagement.Controllers
 {
     public class TransactionController : Controller
     {
+        public readonly ITransactionRepository _transactionRepository;
+        public readonly TransactionBusiness _transactionBusiness;
+
+        public TransactionController(ITransactionRepository transactionRepository)
+        {
+            _transactionRepository = transactionRepository;
+            _transactionBusiness = new TransactionBusiness(_transactionRepository);
+        }   
+
         public IActionResult AddTransaction(int accountCode)
         {
             return View(new TransactionViewModel { AccountCode = accountCode});
@@ -19,15 +29,13 @@ namespace PeopleManagement.Controllers
                 ModelState.AddModelError("", "Some error occured, please try again later.");
                 return View(transaction);
             }
-            var business = new TransactionBusiness();
-            business.AddNewTransaction(transaction);
+            _transactionBusiness.AddNewTransaction(transaction);
             return RedirectToAction("AccountDetails", "Accounts", new { accountCode  = transaction.AccountCode});
         }
         
         public IActionResult TransactionDetails(int accountCode)
         {
-            var business = new TransactionBusiness();
-            var transaction = business.GetTransactionByCode(accountCode);
+            var transaction = _transactionBusiness.GetTransactionByCode(accountCode);
             return View(transaction);
         }
 
@@ -39,8 +47,7 @@ namespace PeopleManagement.Controllers
                 ModelState.AddModelError("", "Some error occured, please try again later.");
                 return View(transaction);
             }
-            var business = new TransactionBusiness();
-            business.UpdateTransaction(transaction);
+            _transactionBusiness.UpdateTransaction(transaction);
             return RedirectToAction("AccountDetails", "Accounts", new { accountCode = transaction.AccountCode });
         }
     }

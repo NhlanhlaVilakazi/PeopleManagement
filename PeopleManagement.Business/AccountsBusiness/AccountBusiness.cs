@@ -1,35 +1,38 @@
 ﻿using PeopleManagement.Business.MappingBusiness;
 using PeopleManagement.Data.DataModels.Accounts;
 using PeopleManagement.Repository.Implementation;
+using PeopleManagement.Repository.Interface;
 using PeopleManagement.ViewModels.Accounts;
 
 namespace PeopleManagement.Business.AccountsBusiness
 {
     public class AccountBusiness
     {
+        private readonly IAccountRepository _accountRepository;
+        
+        public AccountBusiness(IAccountRepository accountRepo)
+        {
+            _accountRepository = accountRepo;
+        }
         public void CreatePersonAccount(AccountViewModel accountInfo)
         {
-            using var repo = new AccountRepository();
-            repo.AddNewAccount(ObjectMapper.Mapper.Map<Account>(accountInfo));
+            _accountRepository.AddNewAccount(ObjectMapper.Mapper.Map<Account>(accountInfo));
         }
 
         public void UpdateAccountInformation(AccountViewModel accountInfo)
         {
-            using var repo = new AccountRepository();
-            repo.UpdateAccount(ObjectMapper.Mapper.Map<Account>(accountInfo));
+            _accountRepository.UpdateAccount(ObjectMapper.Mapper.Map<Account>(accountInfo));
         }
 
         public AccountViewModel GetAccountInformation(int accountCode)
         {
-            using var repo = new AccountRepository();
-            var accountInfo = repo.GetAccountInfomationByCode(accountCode);
+            var accountInfo = _accountRepository.GetAccountInfomationByCode(accountCode);
             return ObjectMapper.Mapper.Map<AccountViewModel>(accountInfo);
         }
 
         public bool DoesAccountExist(string accountNumber, bool isUpdate)
         {
-            using var repo = new AccountRepository();
-            return repo.AccountAlreadyExist(accountNumber, isUpdate);
+            return _accountRepository.AccountAlreadyExist(accountNumber, isUpdate);
         }
     }
 }
