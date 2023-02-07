@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using PeopleManagement.Data;
 using PeopleManagement.Repository.Implementation;
 using PeopleManagement.Repository.Interface;
 
@@ -7,10 +5,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IPersonRepository, PersonRepository>();
-builder.Services.AddSingleton<IAccountRepository, AccountRepository>();
-builder.Services.AddSingleton<ITransactionRepository, TransactionRepository>();
-builder.Services.AddSingleton<IAccountTransactionRepository, AccountTransactionRepository>();
+builder.Services.AddTransient<IPersonRepository, PersonRepository>();
+builder.Services.AddTransient<IAccountRepository, AccountRepository>();
+builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
+builder.Services.AddTransient<IAccountTransactionRepository, AccountTransactionRepository>();
 
 var app = builder.Build();
 
